@@ -6,14 +6,16 @@ phases:
       nodejs: latest
     commands:
       - npm install
+
   build:
     commands:
       - npm run build
+
   post_build:
     commands:
-      - aws s3 ls s3://learnnodeapp --region ap-south-1
-      - aws s3 sync build/ s3://learnnodeapp --region ap-south-1 --delete
-
+      - aws sts get-caller-identity  
+      - aws s3 ls s3://learnbuildproject --region ap-south-1  
+      - aws s3 sync build/ s3://learnbuildproject --region ap-south-1 --delete  
 
 artifacts:
   files:
