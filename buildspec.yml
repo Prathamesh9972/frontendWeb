@@ -11,7 +11,7 @@ phases:
       - npm run build
   post_build:
     commands:
-      - aws s3 sync build/ s3://mern-frontend-bucket --region ap-south-1 --delete
+      - aws aws s3 sync build/ s3://learnnodeapp --region ap-south-1 --delete
 
 artifacts:
   files:
