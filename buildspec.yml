@@ -3,19 +3,17 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: latest
+      nodejs: 18
     commands:
       - npm install
 
   build:
     commands:
-      - npm run build
+      - npm run build  # Vite outputs to 'dist/'
 
   post_build:
     commands:
-      - aws sts get-caller-identity  
-      - aws s3 ls s3://learnbuildproject --region ap-south-1  
-      - aws s3 sync build/ s3://learnbuildproject --region ap-south-1 --delete  
+      - aws s3 sync dist/ s3://learnbuildproject --region ap-south-1 --delete  
 
 artifacts:
   files:
